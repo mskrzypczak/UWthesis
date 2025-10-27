@@ -1,4 +1,4 @@
-name: LaTeX: build & publish
+name: "LaTeX: build & publish"
 
 on:
   push:
