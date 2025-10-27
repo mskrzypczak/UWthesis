@@ -22,15 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Compile examples with latex-action
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: |
-            examples/thesis-demo.tex
-          cache: true
-          latexmk_use_lualatex: false
-          latexmk_use_xelatex: false
-
       - name: Prepare dist folder
         run: |
           sudo rm -rf dist || true
@@ -41,6 +32,14 @@ jobs:
 
           DATE_PL=$(LC_ALL=pl_PL.UTF-8 date -u '+%Y-%m-%d %H:%M')
           sed -i "s|PLACEHOLDER_DATETIME|${DATE_PL}|" dist/index.html
+
+      - name: Compile examples with latex-action
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            examples/thesis-demo.tex
+          latexmk_use_lualatex: false
+          latexmk_use_xelatex: false
 
       # Make PDFs downloadable from the run page
       - name: Upload artifact (PDFs)
