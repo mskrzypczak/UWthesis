@@ -27,10 +27,10 @@ jobs:
         with:
           root_file: |
             examples/thesis-demo.tex
+          cache: true
           latexmk_use_lualatex: false
           latexmk_use_xelatex: false
           pre_compile: tlmgr update --self --all
-          extra_system_packages: "ghostscript"
 
       - name: Prepare dist folder
         run: |
