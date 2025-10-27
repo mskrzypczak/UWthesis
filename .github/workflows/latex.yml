@@ -37,7 +37,6 @@ jobs:
           mkdir -p dist
           sudo chown -R "$USER":"$USER" dist
           
-          cp examples/*.pdf dist/ || true
           cp -r site/* dist/ || true
 
           DATE_PL=$(LC_ALL=pl_PL.UTF-8 date -u '+%Y-%m-%d %H:%M')
