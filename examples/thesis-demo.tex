@@ -1,0 +1,39 @@
+\documentclass[phd,english]{uw-thesis}
+
+\title{A Minimal UW Thesis Demo}
+\author{Jan Kowalski}
+\faculty{Faculty of Mathematics, Informatics and Mechanics}
+\supervisor{Prof. Jane Doe}
+\date{October 2025}
+
+\usepackage{lipsum}
+\usepackage{amsmath,amsthm,amssymb}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+\chapter{Introduction}
+This repository demonstrates a very small thesis class.
+\lipsum[2-3]
+
+\section{A result}
+\begin{theorem}
+If $a=b$ then $a^2=b^2$.
+\end{theorem}
+\begin{proof}
+Trivial.
+\end{proof}
+
+\chapter{Figures}
+\begin{figure}[h]
+\centering
+\fbox{\rule{0pt}{40mm}\rule{60mm}{0pt}}
+\caption{Placeholder figure}
+\end{figure}
+
+\chapter{Conclusion}
+\lipsum[4]
+
+\end{document}
