@@ -2,7 +2,7 @@ name: LaTeX: build & publish
 
 on:
   push:
-    branches: [ "**" ]
+    branches: ["**"]
   pull_request:
   workflow_dispatch: {}
 
@@ -37,12 +37,14 @@ jobs:
           mkdir -p dist
           cp examples/*.pdf dist/ || true
 
+      # Make PDFs downloadable from the run page
       - name: Upload artifact (PDFs)
         uses: actions/upload-artifact@v4
         with:
           name: pdfs
           path: dist/*.pdf
 
+      # Prepare GitHub Pages artifact
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -50,12 +52,16 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
