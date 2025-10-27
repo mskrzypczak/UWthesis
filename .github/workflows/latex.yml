@@ -1,0 +1,60 @@
+name: LaTeX: build & publish
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile examples with latex-action
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            examples/thesis-demo.tex
+          latexmk_use_lualatex: false
+          latexmk_use_xelatex: false
+          pre_compile: tlmgr update --self --all
+          extra_system_packages: "ghostscript"
+
+      - name: Prepare dist folder
+        run: |
+          mkdir -p dist
+          cp examples/*.pdf dist/ || true
+
+      - name: Upload artifact (PDFs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: dist/*.pdf
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
