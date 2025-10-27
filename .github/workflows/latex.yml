@@ -27,14 +27,16 @@ jobs:
         with:
           root_file: |
             examples/thesis-demo.tex
-          cache: true
           latexmk_use_lualatex: false
           latexmk_use_xelatex: false
-          pre_compile: tlmgr update --self --all
 
       - name: Prepare dist folder
         run: |
+          set -euo pipefail
+          sudo rm -rf dist || true
           mkdir -p dist
+          sudo chown -R "$USER":"$USER" dist
+          
           cp examples/*.pdf dist/ || true
           cp -r site/* dist/ || true
 
