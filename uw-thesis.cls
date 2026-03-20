@@ -36,7 +36,10 @@
 
 % Metadata commands
 \newcommand{\faculty}[1]{\def\uw@faculty{#1}}
+\newcommand{\field}[1]{\def\uw@field{#1}}
+\newcommand{\discipline}[1]{\def\uw@discipline{#1}}
 \newcommand{\supervisor}[1]{\def\uw@supervisor{#1}}
+\newcommand{\cosupervisor}[1]{\def\uw@cosupervisor{#1}}
 
 % Title formatting (black text)
 \titleformat{\chapter}[display]
@@ -61,9 +64,11 @@
 \renewcommand{\maketitle}{%
   \begin{titlepage}
     \centering
-    {\Large University of Warsaw \par}
+    {\Large \textsc{University of Warsaw} \par}
     \vspace{0.5cm}
     {\large \uw@faculty\par}
+    \vspace{1.5cm}
+    \includegraphics[width=40mm]{../UW_logo.pdf}
     \vfill
     {\LARGE\bfseries \@title \par}
     \vspace{1.2cm}
@@ -73,7 +78,7 @@
     \vspace{1.2cm}
     {\large Supervisor: \uw@supervisor\par}
     \vfill
-    {\large \@date\par}
+    {\large Warsaw, \@date\par}
   \end{titlepage}
   \setcounter{page}{1}
 }

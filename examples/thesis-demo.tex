@@ -1,40 +1,61 @@
-\documentclass[phd,english]{uw-thesis}
+\documentclass[phd,english]{../uw-thesis2}
 
-\title{A Minimal UW Thesis Demo}
-\author{Jan Kowalski}
-\faculty{Faculty of Mathematics, Informatics and Mechanics}
-\supervisor{Prof. Jane Doe}
-\date{October 2025}
+\title{Title of the doctoral dissertation}
+\author{Your Full Name}
+\date{March 2026}
 
-\usepackage{lipsum}
-\usepackage{amsmath,amsthm,amssymb}
+\faculty{Faculty of Mathematics, Informatics, and Mechanics}
+\field{Natural Sciences}
+\fieldpl{nauk ścisłych i przyrodniczych}
+\discipline{Computer and Information Sciences}
+\disciplinepl{informatyka}
+\supervisor{Prof.~Name Surname}
+\cosupervisor{Dr~Name Surname} % remove this line if there is no assistant supervisor
+\keywords{keyword one; keyword two; keyword three}
+\polishtitle{Polski tytuł rozprawy doktorskiej}
+\polishabstract{Tutaj wstaw streszczenie po polsku.}
+\englishabstract{Put the English abstract here.}
+\titlepagelogo{../UW_logo.pdf} % optional; omitted automatically if the file does not exist
 
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
 
 \begin{document}
-\maketitle
+\makefrontmatter
 
 \chapter{Introduction}
-This repository demonstrates a very small thesis class.
-\lipsum[2-3]
+Start the thesis here.
 
-\section{A result}
+\section{First section}
+
 \begin{theorem}
-If $a=b$ then $a^2=b^2$.
+This is a sample theorem. You can use the \texttt{theorem} environment for theorems, lemmas, propositions, etc.
 \end{theorem}
-\begin{proof}
-Trivial.
-\end{proof}
 
-\chapter{Figures}
-\begin{figure}[h]
-\centering
-\fbox{\rule{0pt}{40mm}\rule{60mm}{0pt}}
-\caption{Placeholder figure}
-\end{figure}
+\cite{tarski_decision}
 
-\chapter{Conclusion}
-\lipsum[4]
+\section{Second section}
 
+\begin{theorem}
+This is a second theorem!
+\end{theorem}
+
+\begin{lemma}
+This is a sample lemma.
+\end{lemma}
+
+\chapter{Contents}
+
+This is the second chapter.
+
+\begin{lemma}
+This is a sample lemma.
+\end{lemma}
+
+\begin{lemma}
+This is a sample lemma.
+\end{lemma}
+
+\bibliographystyle{alpha}
+\bibliography{test.bib}
 \end{document}
-% touch
