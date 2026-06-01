@@ -1,0 +1,74 @@
+\documentclass[english]{../uw-thesis}
+
+\titleEN{Title of the doctoral dissertation}
+\titlePL{Polski tytuł rozprawy doktorskiej}
+
+\author{Your Full Name}
+%\place{Warsaw}
+\date{June 2026}
+
+\faculty{Doctoral School of Exact and Natural Sciences}
+%\faculty{International Doctoral School}
+%\faculty{Faculty of Mathematics, Informatics, and Mechanics}
+
+\addSupervisor{Prof.~Main Supervisor}
+%\addSupervsor{Prof.~Second Supervisor}
+\addCosupervisor{Dr~Assistant Supervisor}
+\addCosupervisor{Dr~Second Assistant}
+\addCosupervisor{Dr~Third Assistant}
+
+%\fieldEN{Natural Sciences}
+%\fieldPL{nauk ścisłych i przyrodniczych}
+
+\disciplineEN{Computer and Information Sciences}
+%\disciplineEN{Mathematics}
+\disciplinePL{informatyka}
+%\disciplinePL{matematyka}
+
+\keywords{keyword one; keyword two; keyword three}
+
+\abstractPL{Tutaj wstaw streszczenie po polsku.}
+\abstractEN{Put the English abstract here.}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\begin{document}
+\makefrontmatter
+
+\chapter{Introduction}
+Start the thesis here.
+
+\section{First section}
+
+\begin{theorem}
+This is a sample theorem. You can use the \texttt{theorem} environment for theorems, lemmas, propositions, etc.
+\end{theorem}
+
+\cite{tarski_decision}
+
+\section{Second section}
+
+\begin{theorem}
+This is a second theorem!
+\end{theorem}
+
+\begin{lemma}
+This is a sample lemma.
+\end{lemma}
+
+\chapter{Contents}
+
+This is the second chapter.
+
+\begin{lemma}
+This is a sample lemma.
+\end{lemma}
+
+\begin{lemma}
+This is a sample lemma.
+\end{lemma}
+
+\bibliographystyle{alpha}
+\bibliography{test.bib}
+\end{document}

@@ -1,0 +1,71 @@
+\documentclass[polish]{../uw-thesis}
+
+\titleEN{Title of the doctoral dissertation}
+\titlePL{Polski tytuł rozprawy doktorskiej}
+
+\author{Imię Nazwisko}
+%\place{Warszawa}
+\date{Czerwiec 2026}
+
+\faculty{Szkoła Doktorska Nauk Ścisłych i Przyrodniczych}
+%\faculty{Międzydziedzinowa Szkoła Doktorska}
+%\faculty{Wydział Matematyki, Informatyki i Mechaniki}
+
+%\fieldPL{nauk ścisłych i przyrodniczych}
+
+\disciplinePL{informatyka}
+%\disciplinePL{matematyka}
+
+\addSupervisor{Prof.~Główny Promotor}
+\addSupervisor{Prof.~Jego Kolega}
+\addCosupervisor{Dr~Pomocniczy Promotor}
+\addCosupervisor{Dr~Jego Ziomeczek}
+\addCosupervisor{Mgr~Ich Koleś}
+
+\keywords{słowo kluczowe 1; słowo kluczowe 2; słowo kluczowe 3}
+
+\abstractPL{Tutaj wstaw streszczenie po polsku.}
+\abstractEN{Put the English abstract here.}
+
+\newtheorem{theorem}{Twierdzenie}[chapter]
+\newtheorem{lemma}[theorem]{Lemat}
+
+\begin{document}
+\makefrontmatter
+
+\chapter{Wprowadzenie}
+Tutaj rozpoczyna się rozprawa.
+
+\section{Sekcja pierwsza}
+
+\begin{theorem}
+    Proste twierdzenie. Możesz używać środowiska \texttt{theorem} dla twierdzeń, lem, propozycji itp.
+\end{theorem}
+
+\cite{tarski_decision}
+
+\section{Sekcja druga}
+
+\begin{theorem}
+    To jest drugie twierdzenie!
+\end{theorem}
+
+\begin{lemma}
+To jest próba lematu.
+\end{lemma}
+
+\chapter{Zawartość}
+
+To jest drugi rozdział.
+
+\begin{lemma}
+To jest próba lematu.
+\end{lemma}
+
+\begin{lemma}
+To jest próba lematu.
+\end{lemma}
+
+\bibliographystyle{alpha}
+\bibliography{test.bib}
+\end{document}
