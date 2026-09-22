@@ -1,0 +1,1 @@
+/home/mskrzypczak/Repos/UWthesis/uw-thesis.cls
