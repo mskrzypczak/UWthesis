@@ -1,13 +1,17 @@
 # UWthesis — UW Thesis LaTeX Class
 
-A minimal LaTeX **class** for a doctoral dissertation at the **University of Warsaw (UW)** with
-GitHub Actions that builds example PDFs on every push and publishes them to GitHub Pages.
+A LaTeX **class** for a doctoral dissertation at the **[University of Warsaw](https://en.uw.edu.pl/) (UW)**. It typesets
+the formal front matter (the title page, the statements of the supervisors and of the author, the
+keywords, and the abstracts in Polish and in English) from a few commands in the preamble, and
+otherwise behaves like the standard class `report`.
 
 - **Website:** https://mskrzypczak.github.io/UWthesis/
 - **Manual:** https://mskrzypczak.github.io/UWthesis/manual.pdf
 - **Download** (class, logos and examples in one folder): https://mskrzypczak.github.io/UWthesis/uw-thesis.zip
 
-> ⚠️ This is a starter. Please adapt typography and formal requirements to your faculty’s rules.
+> The layout is aligned with the doctoral dissertation template of the Faculty of Mathematics,
+> Informatics, and Mechanics. Formal requirements differ between the units of the University and
+> change over time, so please check the result against the rules that apply to you.
 
 ---
 
@@ -54,7 +58,7 @@ On every **push** and **pull request**:
   - **GitHub Pages** at: https://mskrzypczak.github.io/UWthesis/thesis-demo_EN.pdf
     and https://mskrzypczak.github.io/UWthesis/thesis-demo_PL.pdf
 
-> After you push to GitHub, go to **Settings → Pages** and ensure “Build and deployment” is set to **GitHub Actions**.
+> In a fork, go to **Settings → Pages** and ensure “Build and deployment” is set to **GitHub Actions**.
 
 ## Using the class
 
@@ -65,22 +69,28 @@ In your `.tex` (kept next to `uw-thesis.cls` and the logos, compiled with pdfLaT
 
 ```latex
 \documentclass[english]{uw-thesis}
-\titleEN{Your Thesis Title}
-\titlePL{Polski tytuł rozprawy}
-\author{Your Name}
-\faculty{Faculty of Mathematics, Informatics, and Mechanics}
+
+\titleEN{Title of the doctoral dissertation}
+\titlePL{Polski tytuł rozprawy doktorskiej}
+\author{Your Full Name}
+\date{June 2026}
+
+\faculty{Doctoral School of Exact and Natural Sciences}
 \disciplineEN{Computer and Information Sciences}
 \disciplinePL{informatyka}
-\addSupervisor{Prof. Jane Doe}
-\date{October 2025}
-\keywords{keyword one; keyword two}
-\abstractPL{Streszczenie po polsku.}
-\abstractEN{Abstract in English.}
+
+\addSupervisor{Prof.~Main Supervisor}
+\addCosupervisor{Dr~Assistant Supervisor}
+
+\keywords{keyword one; keyword two; keyword three}
+\abstractPL{Tutaj wstaw streszczenie po polsku.}
+\abstractEN{Put the English abstract here.}
+
 \begin{document}
 \makefrontmatter
-\chapter{Introduction}
-Hello UW!
 
+\chapter{Introduction}
+Start the thesis here.
 \end{document}
 ```
 
