@@ -31,6 +31,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{emptypage}
 \RequirePackage{array}
+\RequirePackage{ifthen}
 
 % === Layout ===
 \geometry{margin=3cm}
@@ -44,6 +45,9 @@
   \ifthenelse{\equal{\uw@lang}{english}}{#1}{}%
   \ifthenelse{\equal{\uw@lang}{polish}}{#2}{}%
 }
+
+% The other language is needed to hyphenate its texts in the front matter
+\uw@caseLang{\babelprovide[import]{polish}}{\babelprovide[import]{english}}
 
 % === Metadata defaults ===
 \def\uw@university{\uw@caseLang%
@@ -59,7 +63,7 @@
 \def\uw@fieldPL{nauk ścisłych i przyrodniczych}
 
 \def\uw@disciplineEN{Computer and Information Sciences}
-\def\uw@disciplinepl{informatyka}
+\def\uw@disciplinePL{informatyka}
 
 \def\uw@place{\uw@caseLang{Warsaw}{Warszawa}}
 
@@ -225,7 +229,7 @@
 \newcommand{\uw@superStatement}[1]{
   \uw@caseLang{
   \uw@frontheading{Oświadczenie promotora /\\Statement of the Supervisor on submission of the doctoral dissertation}
-  Oświadczam, że niniejsza rozprawa doktorska została przygotowana pod moim kierunkiem. Stwierdzam, że praca spełnia wymagania określone dla rozpraw doktorskich i może zostać przedstawiona w postępowaniu o nadanie stopnia doktora w dziedzinie \uw@fieldPL, w dyscyplinie \uw@disciplinePL.\par
+  \foreignlanguage{polish}{Oświadczam, że niniejsza rozprawa doktorska została przygotowana pod moim kierunkiem. Stwierdzam, że praca spełnia wymagania określone dla rozpraw doktorskich i może zostać przedstawiona w postępowaniu o nadanie stopnia doktora w dziedzinie \uw@fieldPL, w dyscyplinie \uw@disciplinePL.}\par
   \vspace{0.9cm}
   I hereby certify that the thesis submitted has been prepared under my supervision and I declare that it satisfies the requirements of submission in the proceedings for the award of a degree of Doctor in the field of \uw@fieldEN\ in the discipline of \uw@disciplineEN.\par
   \uw@signatureline{Data / Date}{Podpis promotora /\\ Signature of the Supervisor\\ #1}
@@ -239,7 +243,7 @@
 \newcommand{\uw@coperStatement}[1]{
   \uw@caseLang{
     \uw@frontheading{Oświadczenie promotora pomocniczego /\\Statement of the Assistant Supervisor}
-    Oświadczam, że niniejsza rozprawa doktorska została przygotowana z moim udziałem w procesie planowania badań, ich realizacji i analizy wyników oraz stwierdzam, że spełnia ona warunki do przedstawienia jej w postępowaniu o nadanie stopnia doktora w dziedzinie \uw@fieldPL, w dyscyplinie \uw@disciplinePL.\par
+    \foreignlanguage{polish}{Oświadczam, że niniejsza rozprawa doktorska została przygotowana z moim udziałem w procesie planowania badań, ich realizacji i analizy wyników oraz stwierdzam, że spełnia ona warunki do przedstawienia jej w postępowaniu o nadanie stopnia doktora w dziedzinie \uw@fieldPL, w dyscyplinie \uw@disciplinePL.}\par
     \vspace{0.9cm}
     I hereby declare that the present doctoral dissertation was prepared with my participation in the process of planning the research, conducting it, and analyzing the results. I confirm that it meets the requirements for submission in the proceedings for the award of a degree of Doctor in the field of \uw@fieldEN\ in the discipline of \uw@disciplineEN.\par
     \uw@signatureline{Data / Date}{Podpis promotora pomocniczego /\\ Signature of the Assistant Supervisor\\ #1}
@@ -280,11 +284,13 @@
   \thispagestyle{plain}
   \begingroup\singlespacing
   \uw@frontheading{Oświadczenie autora pracy\uw@ifEN{ /\\Statement of the Author on submission of the doctoral dissertation}}
+  \begin{otherlanguage*}{polish}
   Świadom(a) odpowiedzialności prawnej oświadczam, że niniejsza rozprawa doktorska została przygotowana przeze mnie samodzielnie i nie zawiera treści uzyskanych w sposób niezgodny z obowiązującymi przepisami prawa.\par
   \vspace{0.8cm}
   Oświadczam ponadto, że przedłożona praca nie była dotychczas przedmiotem postępowania w sprawie nadania stopnia doktora w żadnej innej jednostce naukowej.\par
   \vspace{0.8cm}
   Zapewniam również, że niniejsza wersja rozprawy jest tożsama z załączoną wersją elektroniczną.\par
+  \end{otherlanguage*}
   \uw@ifEN{
   \vspace{0.9cm}
   Aware of the legal responsibility, I declare that this doctoral dissertation was completed independently and does not include any material acquired unlawfully.\par
@@ -307,11 +313,11 @@
   \uw@caseLang{
     {\noindent\bfseries Tytuł pracy w języku polskim / Title of the doctoral dissertation in Polish\par}
     \vspace{1.0cm}
-    \uw@titlePL\par
+    \foreignlanguage{polish}{\uw@titlePL}\par
   }{
     {\noindent\bfseries Tytuł pracy w języku angielskim\par}
     \vspace{1.0cm}
-    \uw@titleEN\par
+    \foreignlanguage{english}{\uw@titleEN}\par
   }
   \endgroup
 }
@@ -321,7 +327,7 @@
   \thispagestyle{plain}
   \begingroup\singlespacing
   \uw@frontheading{Streszczenie w języku polskim\uw@ifEN{ / Abstract in Polish}}
-  \uw@abstractPL\par
+  \begin{otherlanguage*}{polish}\uw@abstractPL\par\end{otherlanguage*}
   \endgroup
 }
 
@@ -330,7 +336,7 @@
   \thispagestyle{plain}
   \begingroup\singlespacing
   \uw@frontheading{Streszczenie w języku angielskim\uw@ifEN{ / Abstract in English}}
-  \uw@abstractEN\par
+  \begin{otherlanguage*}{english}\uw@abstractEN\par\end{otherlanguage*}
   \endgroup
 }
 

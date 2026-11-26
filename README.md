@@ -68,7 +68,7 @@ In your `.tex` (kept next to `uw-thesis.cls` and the logos, compiled with pdfLaT
 \titleEN{Your Thesis Title}
 \titlePL{Polski tytuł rozprawy}
 \author{Your Name}
-\faculty{Faculty of Mathematics, Informatics and Mechanics}
+\faculty{Faculty of Mathematics, Informatics, and Mechanics}
 \disciplineEN{Computer and Information Sciences}
 \disciplinePL{informatyka}
 \addSupervisor{Prof. Jane Doe}

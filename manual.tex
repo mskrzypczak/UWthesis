@@ -18,8 +18,8 @@ It is based on the standard class \texttt{report} and adds the front matter of a
 This manual describes all the options and commands of the class.
 
 To use the class, put \texttt{uw-thesis.cls} and the logo (\verb|UW_logo_EN.pdf| for a thesis in English, \verb|UW_logo_PL.pdf| for a thesis in Polish) where \LaTeX{} can find them, for instance next to the main file of the thesis.
-The thesis has to be compiled with pdf\LaTeX{}; Xe\LaTeX{} and Lua\LaTeX{} are not supported at the moment.
-A typical main file looks as follows; complete examples for both languages are in the directory \texttt{examples}.
+The thesis can be compiled with pdf\LaTeX{}, Xe\LaTeX{} or Lua\LaTeX{}; the last two require the font Times New Roman to be installed in the system.
+A typical main file looks as follows; complete examples for both languages, \verb|thesis-demo_EN.tex| and \verb|thesis-demo_PL.tex|, are distributed together with the class.
 
 \begin{verbatim}
 \documentclass[english]{uw-thesis}
@@ -55,7 +55,8 @@ The class has two options, which select the language of the thesis.
 \item \texttt{english} (the default): the title page is in English, and the headings and the statements on the remaining pages of the front matter are bilingual, with the Polish text followed by the English one.
 \item \texttt{polish}: the whole front matter is in Polish.
 \end{itemize}
-The selected language is also passed to \texttt{babel}.
+The selected language is passed to \texttt{babel} as the main language of the document.
+The other language is loaded as well, so that the texts of the front matter written in it (e.g.\ the Polish abstract of an English thesis) are hyphenated correctly.
 No other options are recognized.
 In particular, the options of \texttt{report} are not passed on, so e.g.\ \texttt{11pt} or \texttt{oneside} have no effect.
 
@@ -79,8 +80,8 @@ They are used in the preamble.
   The defaults are ``Natural Sciences'' and ``Computer and Information Sciences''.
 \item \verb|\fieldPL{...}| and \verb|\disciplinePL{...}| set the field and the discipline in Polish.
   They are used on the title page of a Polish thesis and, also in an English thesis, in the Polish text of the statements of the supervisors and of the assistant supervisors.
-  The values are inserted after the words ``w dziedzinie'' and ``w dyscyplinie'', respectively, for instance ``nauk ścisłych i przyrodniczych'' and ``informatyka''.
-  The default field is ``nauk ścisłych i przyrodniczych''; the discipline has no default and always has to be given.
+  The values are inserted after the words ``w dziedzinie'' and ``w dyscyplinie'', respectively, so they need the matching grammatical form.
+  The defaults are ``nauk ścisłych i przyrodniczych'' and ``informatyka''.
 \item \verb|\keywords{...}| sets the keywords, which are printed exactly as given.
   They are empty by default.
 \item \verb|\abstractPL{...}| and \verb|\abstractEN{...}| set the abstracts in Polish and in English.
@@ -118,13 +119,13 @@ The remaining properties of the layout are fixed and cannot be changed by the op
 \item the class \texttt{report} is loaded with the options \texttt{12pt}, \texttt{a4paper} and \texttt{twoside};
 \item all margins are 3\,cm (\texttt{geometry});
 \item the line spacing is one and a half (\texttt{setspace}), except for the front matter after the title page, which is single-spaced;
-\item the fonts are those of \texttt{newtxtext} and \texttt{newtxmath}, with \texttt{fontenc} set to T1 and \texttt{inputenc} to UTF-8;
+\item with pdf\LaTeX{} the fonts are those of \texttt{newtxtext} and \texttt{newtxmath}, with \texttt{fontenc} set to T1 and \texttt{inputenc} to UTF-8; with Xe\LaTeX{} and Lua\LaTeX{} only the main text font is changed, to Times New Roman loaded with \texttt{fontspec};
 \item links are active but not highlighted (\texttt{hyperref} with \texttt{hidelinks});
 \item chapter headings are formatted with \texttt{titlesec}: the line ``CHAPTER~1'' (``ROZDZIAŁ~1'' in Polish) followed by the title between two horizontal rules;
 \item the page style is \texttt{plain} in the front matter and \texttt{headings} in the main text;
 \item the name of the university, the logo and the wording of the title page and of the statements are built in.
 \end{itemize}
-Apart from the packages mentioned above, the class loads \texttt{babel}, \texttt{iftex}, \texttt{microtype}, \texttt{graphicx}, \texttt{emptypage} and \texttt{array}.
+Apart from the packages mentioned above, the class loads \texttt{babel}, \texttt{iftex}, \texttt{ifthen}, \texttt{microtype}, \texttt{graphicx}, \texttt{emptypage} and \texttt{array}.
 Everything else works as in \texttt{report}.
 
 \end{document}
