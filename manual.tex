@@ -1,0 +1,130 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext}
+\usepackage[margin=3cm]{geometry}
+
+\title{The \texttt{uw-thesis} class}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Usage}
+
+The class \texttt{uw-thesis} typesets a doctoral dissertation at the University of Warsaw.
+It is based on the standard class \texttt{report} and adds the front matter of a dissertation: the title page, the statements of the supervisors and of the author, the keywords, the abstracts in Polish and in English, and the table of contents.
+This manual describes all the options and commands of the class.
+
+To use the class, put \texttt{uw-thesis.cls} and the logo (\verb|UW_logo_EN.pdf| for a thesis in English, \verb|UW_logo_PL.pdf| for a thesis in Polish) where \LaTeX{} can find them, for instance next to the main file of the thesis.
+The thesis has to be compiled with pdf\LaTeX{}; Xe\LaTeX{} and Lua\LaTeX{} are not supported at the moment.
+A typical main file looks as follows; complete examples for both languages are in the directory \texttt{examples}.
+
+\begin{verbatim}
+\documentclass[english]{uw-thesis}
+
+\titleEN{Title of the doctoral dissertation}
+\titlePL{Polski tytuł rozprawy doktorskiej}
+\author{Your Full Name}
+\date{June 2026}
+
+\faculty{Doctoral School of Exact and Natural Sciences}
+\disciplineEN{Computer and Information Sciences}
+\disciplinePL{informatyka}
+
+\addSupervisor{Prof.~Main Supervisor}
+\addCosupervisor{Dr~Assistant Supervisor}
+
+\keywords{keyword one; keyword two; keyword three}
+\abstractPL{Tutaj wstaw streszczenie po polsku.}
+\abstractEN{Put the English abstract here.}
+
+\begin{document}
+\makefrontmatter
+
+\chapter{Introduction}
+Start the thesis here.
+\end{document}
+\end{verbatim}
+
+\section{Class options}
+
+The class has two options, which select the language of the thesis.
+\begin{itemize}
+\item \texttt{english} (the default): the title page is in English, and the headings and the statements on the remaining pages of the front matter are bilingual, with the Polish text followed by the English one.
+\item \texttt{polish}: the whole front matter is in Polish.
+\end{itemize}
+The selected language is also passed to \texttt{babel}.
+No other options are recognized.
+In particular, the options of \texttt{report} are not passed on, so e.g.\ \texttt{11pt} or \texttt{oneside} have no effect.
+
+\section{Metadata}
+
+The following commands set the data printed in the front matter.
+They are used in the preamble.
+\begin{itemize}
+\item \verb|\titleEN{...}| and \verb|\titlePL{...}| set the title of the thesis in English and in Polish.
+  The title in the language of the thesis is printed on the title page and the other one on the page with the keywords, so both should be given.
+  Both are empty by default.
+  The standard command \verb|\title| is not used by the class.
+\item \verb|\author{...}| sets the name of the author, printed on the title page.
+  It has no default.
+\item \verb|\date{...}| and \verb|\place{...}| set the date and the place, printed at the bottom of the title page (e.g.\ ``Warsaw, June 2026'').
+  The default date is \verb|\today|, and the default place is ``Warsaw'' in an English thesis and ``Warszawa'' in a Polish one.
+\item \verb|\faculty{...}| sets the unit printed on the title page below the name of the university, for instance a faculty or a doctoral school.
+  The default is ``Faculty of Mathematics, Informatics, and Mechanics'' in an English thesis and ``Wydział Matematyki, Informatyki i Mechaniki'' in a Polish one.
+\item \verb|\fieldEN{...}| and \verb|\disciplineEN{...}| set the field and the discipline in English.
+  They are used only in an English thesis: on the title page and in the English part of the statements of the supervisors and of the assistant supervisors.
+  The defaults are ``Natural Sciences'' and ``Computer and Information Sciences''.
+\item \verb|\fieldPL{...}| and \verb|\disciplinePL{...}| set the field and the discipline in Polish.
+  They are used on the title page of a Polish thesis and, also in an English thesis, in the Polish text of the statements of the supervisors and of the assistant supervisors.
+  The values are inserted after the words ``w dziedzinie'' and ``w dyscyplinie'', respectively, for instance ``nauk ścisłych i przyrodniczych'' and ``informatyka''.
+  The default field is ``nauk ścisłych i przyrodniczych''; the discipline has no default and always has to be given.
+\item \verb|\keywords{...}| sets the keywords, which are printed exactly as given.
+  They are empty by default.
+\item \verb|\abstractPL{...}| and \verb|\abstractEN{...}| set the abstracts in Polish and in English.
+  Both are printed, each on a separate page, regardless of the language of the thesis.
+  An abstract may consist of several paragraphs.
+  Both are empty by default.
+\end{itemize}
+
+\section{Supervisors}
+
+\begin{itemize}
+\item \verb|\addSupervisor{...}| adds a supervisor (\emph{promotor}).
+\item \verb|\addCosupervisor{...}| adds an assistant supervisor (\emph{promotor pomocniczy}).
+\end{itemize}
+Each of the two commands can be used several times, once for every person, and the names are printed in the order in which they were added.
+The supervisors are listed on the title page, and the assistant supervisors, if there are any, in a separate line below them.
+Moreover, a separate statement with a place for the date and the signature is printed for every supervisor and every assistant supervisor.
+At least one supervisor should be added, as otherwise the title page mentions the supervision without any name.
+
+\section{Front matter}
+
+\begin{itemize}
+\item \verb|\makefrontmatter| prints the whole front matter and is meant to be used directly after \verb|\begin{document}|.
+  It produces, in this order: the title page, the statements of the supervisors and of the assistant supervisors, the statement of the author, the page with the keywords and with the title in the other language, the abstract in Polish, the abstract in English, and the table of contents (so \verb|\tableofcontents| is not needed).
+  The pages are numbered starting from the title page, which is page~1 but carries no number, and the numbering continues in the main text.
+\item \verb|\maketitle| prints the title page alone.
+\item \verb|\mainmatter| starts a new page and selects the page style \texttt{headings}.
+  It is not needed after \verb|\makefrontmatter|, which already ends this way.
+\end{itemize}
+
+\section{Fixed settings}
+
+The remaining properties of the layout are fixed and cannot be changed by the options of the class:
+\begin{itemize}
+\item the class \texttt{report} is loaded with the options \texttt{12pt}, \texttt{a4paper} and \texttt{twoside};
+\item all margins are 3\,cm (\texttt{geometry});
+\item the line spacing is one and a half (\texttt{setspace}), except for the front matter after the title page, which is single-spaced;
+\item the fonts are those of \texttt{newtxtext} and \texttt{newtxmath}, with \texttt{fontenc} set to T1 and \texttt{inputenc} to UTF-8;
+\item links are active but not highlighted (\texttt{hyperref} with \texttt{hidelinks});
+\item chapter headings are formatted with \texttt{titlesec}: the line ``CHAPTER~1'' (``ROZDZIAŁ~1'' in Polish) followed by the title between two horizontal rules;
+\item the page style is \texttt{plain} in the front matter and \texttt{headings} in the main text;
+\item the name of the university, the logo and the wording of the title page and of the statements are built in.
+\end{itemize}
+Apart from the packages mentioned above, the class loads \texttt{babel}, \texttt{iftex}, \texttt{microtype}, \texttt{graphicx}, \texttt{emptypage} and \texttt{array}.
+Everything else works as in \texttt{report}.
+
+\end{document}

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>UWthesis — Compiled PDFs</title>
+  <title>UWthesis — LaTeX class for doctoral dissertations at the University of Warsaw</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="University of Warsaw thesis class — compiled PDF examples.">
+  <meta name="description" content="uw-thesis: a LaTeX class for doctoral dissertations at the University of Warsaw, with the formal front matter in English or Polish. Examples and download.">
   <style>
     :root { --fg: #111; --bg: #fff; --muted: #666; }
     * { box-sizing: border-box; }
@@ -14,36 +14,113 @@
     header h1 { font-size: 1.8rem; margin: 0 0 .25rem; }
     header p  { margin: 0 0 1.25rem; color: var(--muted); }
     .card { border: 1px solid #ddd; padding: 1rem 1.25rem; border-radius: .5rem; margin: 1rem 0; }
+    .card h2 { font-size: 1.25rem; margin: 0 0 .5rem; }
+    ul { padding-left: 1.25rem; }
     .list { list-style: none; margin: .5rem 0 0; padding: 0; }
-    .list li { margin: .5rem 0; }
+    li { margin: .5rem 0; }
     a { color: inherit; text-decoration: underline; }
     footer { margin-top: 2rem; color: var(--muted); font-size: .9375rem; }
     code { background: #f5f5f5; padding: .1rem .3rem; border-radius: .25rem; }
+    pre { background: #f5f5f5; padding: .75rem 1rem; border-radius: .25rem; overflow-x: auto; font-size: .875rem; }
+    pre code { background: none; padding: 0; }
   </style>
 </head>
 <body>
   <header>
-    <h1>UWthesis — compiled examples</h1>
-    <p>Built from <code>mskrzypczak/UWthesis</code> via GitHub Actions.</p>
+    <h1>UWthesis</h1>
+    <p>A LaTeX class for doctoral dissertations at the University of Warsaw.</p>
   </header>
 
   <section class="card">
-    <h2>PDFs</h2>
+    <h2>Purpose</h2>
+    <p>A doctoral dissertation at the University of Warsaw begins with a number of formal pages:
+       the title page, the statements of the supervisors and of the author, the keywords, and the
+       abstracts in Polish and in English. The class <code>uw-thesis</code> typesets all of them
+       from a few commands in the preamble, and otherwise behaves like the standard class
+       <code>report</code>.</p>
+    <p>The layout is aligned with the doctoral dissertation template of the Faculty of Mathematics,
+       Informatics and Mechanics. Formal requirements differ between the units of the University
+       and change over time, so please check the result against the rules that apply to you.</p>
+  </section>
+
+  <section class="card">
+    <h2>Possibilities</h2>
+    <ul>
+      <li><strong>The whole front matter with one command.</strong> <code>\makefrontmatter</code>
+          prints the title page, the statements of the supervisors and of the author, the keywords,
+          both abstracts and the table of contents.</li>
+      <li><strong>English or Polish.</strong> With the option <code>english</code> the title page is
+          in English and the remaining formal pages are bilingual, Polish and English; with
+          <code>polish</code> everything is in Polish.</li>
+      <li><strong>Several supervisors.</strong> Every <code>\addSupervisor</code> and
+          <code>\addCosupervisor</code> adds a person to the title page, together with a separate
+          statement with a place for the date and the signature.</li>
+      <li><strong>Your unit and discipline.</strong> The faculty or doctoral school, the field, the
+          discipline and the place are set with <code>\faculty</code>,
+          <code>\fieldEN</code>&nbsp;/&nbsp;<code>\fieldPL</code>,
+          <code>\disciplineEN</code>&nbsp;/&nbsp;<code>\disciplinePL</code> and <code>\place</code>.</li>
+      <li><strong>Standard LaTeX underneath.</strong> A4 paper, 12pt Times-like font, 3&nbsp;cm margins,
+          one-and-a-half line spacing and a two-sided layout; your own packages, theorem environments
+          and BibTeX work as in <code>report</code>. The class is compiled with pdfLaTeX.</li>
+    </ul>
+    <p>All options and commands are described in the <a href="manual.pdf">manual</a>.</p>
+  </section>
+
+  <section class="card">
+    <h2>Examples</h2>
     <ul class="list">
-      <!-- Add your PDFs here -->
-      <li><a href="thesis-demo.pdf">thesis-demo.pdf</a></li>
-      <!-- Example of adding more PDFs later:
-      <li><a href="chapter-template.pdf">chapter-template.pdf</a></li>
-      <li><a href="polish-demo.pdf">polish-demo.pdf</a></li>
-      -->
+      <li>Dissertation in English: <a href="thesis-demo_EN.pdf">thesis-demo_EN.pdf</a>
+          (source: <a href="uw-thesis/thesis-demo_EN.tex">thesis-demo_EN.tex</a>)</li>
+      <li>Dissertation in Polish: <a href="thesis-demo_PL.pdf">thesis-demo_PL.pdf</a>
+          (source: <a href="uw-thesis/thesis-demo_PL.tex">thesis-demo_PL.tex</a>)</li>
     </ul>
   </section>
 
+  <section class="card">
+    <h2>Download</h2>
+    <ul class="list">
+      <li><a href="uw-thesis.zip">uw-thesis.zip</a> — the class, the logos and both examples in one
+          folder. Unpack it and compile one of the examples with pdfLaTeX and BibTeX, or upload the
+          ZIP to Overleaf as a new project.</li>
+      <li><a href="https://github.com/mskrzypczak/UWthesis">github.com/mskrzypczak/UWthesis</a> —
+          the repository with the complete source and its history.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Quick start</h2>
+    <p>Keep <code>uw-thesis.cls</code> and the logo files next to the main file of the thesis:</p>
+<pre><code>\documentclass[english]{uw-thesis}
+
+\titleEN{Title of the doctoral dissertation}
+\titlePL{Polski tytuł rozprawy doktorskiej}
+\author{Your Full Name}
+\date{June 2026}
+
+\faculty{Doctoral School of Exact and Natural Sciences}
+\disciplineEN{Computer and Information Sciences}
+\disciplinePL{informatyka}
+
+\addSupervisor{Prof.~Main Supervisor}
+\addCosupervisor{Dr~Assistant Supervisor}
+
+\keywords{keyword one; keyword two; keyword three}
+\abstractPL{Tutaj wstaw streszczenie po polsku.}
+\abstractEN{Put the English abstract here.}
+
+\begin{document}
+\makefrontmatter
+
+\chapter{Introduction}
+Start the thesis here.
+\end{document}</code></pre>
+  </section>
+
   <footer>
-    <div>University of Warsaw — Thesis class (black &amp; white)</div>
-    <!-- Optionally replace this manually when you publish -->
+    <div>University of Warsaw — Thesis class (black &amp; white), under the
+         <a href="uw-thesis/LICENSE">MIT license</a></div>
+    <div>Built from <code>mskrzypczak/UWthesis</code> via GitHub Actions.</div>
     <div>Last updated: <time id="last-updated">PLACEHOLDER_DATETIME</time></div>
   </footer>
 </body>
 </html>
-

@@ -33,11 +33,20 @@ jobs:
           DATE_PL=$(LC_ALL=pl_PL.UTF-8 date -u '+%Y-%m-%d %H:%M')
           sed -i "s|PLACEHOLDER_DATETIME|${DATE_PL}|" dist/index.html
 
-      - name: Compile examples with latex-action
+      # Class, logos and examples in one folder: published as files and as a ZIP
+      - name: Bundle the class with the examples
+        run: |
+          mkdir dist/uw-thesis
+          cp LICENSE uw-thesis.cls UW_logo_*.pdf examples/*.tex examples/*.bib dist/uw-thesis/
+          cd dist && zip -r uw-thesis.zip uw-thesis
+
+      - name: Compile examples and manual with latex-action
         uses: xu-cheng/latex-action@v3
         with:
           root_file: |
-            examples/thesis-demo.tex
+            examples/thesis-demo_EN.tex
+            examples/thesis-demo_PL.tex
+            manual.tex
           latexmk_use_lualatex: false
           latexmk_use_xelatex: false
 
