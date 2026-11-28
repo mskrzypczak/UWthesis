@@ -38,6 +38,7 @@ cd examples && pdflatex thesis-demo_EN && bibtex thesis-demo_EN && pdflatex thes
 │   ├── test.bib                 # bibliography of the demos
 │   └── uw-thesis.cls, UW_logo_*.pdf # links to the files above
 ├── site/index.html              # the website, styled by https://mskrzypczak.github.io/style.css
+├── site/favicon.png             # the icon of the website
 └── .github/workflows/latex.yml  # GitHub Actions: build & publish PDFs
 ```
 
