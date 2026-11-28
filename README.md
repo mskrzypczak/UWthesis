@@ -37,7 +37,7 @@ cd examples && pdflatex thesis-demo_EN && bibtex thesis-demo_EN && pdflatex thes
 │   ├── thesis-demo_PL.tex       # demo of a dissertation in Polish
 │   ├── test.bib                 # bibliography of the demos
 │   └── uw-thesis.cls, UW_logo_*.pdf # links to the files above
-├── site/index.html              # the website
+├── site/index.html              # the website, styled by https://mskrzypczak.github.io/style.css
 └── .github/workflows/latex.yml  # GitHub Actions: build & publish PDFs
 ```
 
@@ -46,6 +46,7 @@ cd examples && pdflatex thesis-demo_EN && bibtex thesis-demo_EN && pdflatex thes
 On every **push** and **pull request**:
 - Builds PDFs from `examples/*.tex` and `manual.tex`
 - Bundles the class, the logos and the examples into `uw-thesis.zip`
+- Converts three pages of `thesis-demo_EN.pdf` and the logo into the pictures shown on the website
 - Uploads PDFs as build artifacts
 - Publishes the website, the PDFs and the bundle to **GitHub Pages** (from `main` only)
 
